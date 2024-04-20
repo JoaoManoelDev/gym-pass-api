@@ -29,7 +29,7 @@ export const register = async (
       return replay.status(409).send({ message: error.message })
     }
 
-    return replay.status(500).send()
+    throw error
   }
 
   return replay.status(201).send()
