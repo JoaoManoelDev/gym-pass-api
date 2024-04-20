@@ -1,5 +1,6 @@
 import { UsersRepository } from "@/repositories/users-repository"
 import { passwordHash } from "@/utils/hash"
+import { UserAlreadyExistsError } from "./errors/user-already-exists-error"
 
 interface RegisterUseCaseRequest {
   name: string
@@ -21,7 +22,7 @@ export class RegisterUseCase {
     const emailAlreadyExists = await this.usersRepository.findByEmail(email)
   
     if (emailAlreadyExists) {
-      throw new Error("E-mail already exists.")
+      throw new UserAlreadyExistsError
     }
 
     const passwordHashed = await passwordHash({ password })
