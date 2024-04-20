@@ -1,0 +1,15 @@
+# sudo docker run --name gym-pass-api-pg -e POSTGRESQL_USERNAME=docker
+# -e POSTGRESQL_PASSWORD=docker -e POSTGRESQL_DATABASE=gympassapi
+# -p 5432:5432 bitnami/postgresql
+
+version: "2.11.2"
+
+services:
+  gym-pass-api-pg:
+    image: bitnami/postgresql
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=docker
+      - POSTGRESQL_PASSWORD=docker
+      - POSTGRESQL_DATABASE=gympassapi
