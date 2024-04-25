@@ -1,0 +1,14 @@
+import { Gym } from "@prisma/client"
+import { GymsRepository } from "../gym-repository"
+
+export class InMemoryGymsRepository implements GymsRepository {
+  public gyms: Gym[] = []
+
+  async findById(id: string) {
+    const gym = this.gyms.find(gym => gym.id === id)
+
+    if (!gym) return null
+
+    return gym
+  }
+}
