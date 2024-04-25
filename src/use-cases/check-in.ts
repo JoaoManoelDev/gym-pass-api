@@ -18,6 +18,15 @@ export class CheckInUseCase {
     userId,
     gymId
   }: CheckInRequest): Promise<CheckInResponse> {
+    const checkInOnSomeDay = await this.checkInsRepository.findByUserIdOnDate(
+      userId,
+      new Date()
+    )
+
+    if (checkInOnSomeDay) {
+      throw new Error()
+    }
+
     const checkIn = await this.checkInsRepository.create({
       user_id: userId,
       gym_id: gymId,
