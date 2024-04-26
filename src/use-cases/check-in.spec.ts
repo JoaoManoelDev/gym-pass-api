@@ -8,24 +8,28 @@ import {
 import {
   InMemoryGymsRepository
 } from "@/repositories/in-memory/in-memory-gyms-repository"
+import {
+  MaxNumberOfCheckInsError
+} from "./errors/max-number-of-check-ins-error"
+import { MaxDistanceError } from "./errors/max-distance-error"
 
 let checkInsRepository: InMemoryCheckInsRepository
 let gymsRepository: InMemoryGymsRepository
 let sut: CheckInUseCase
 
 describe("Check In Use Case", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     checkInsRepository = new InMemoryCheckInsRepository()
     gymsRepository = new InMemoryGymsRepository()
     sut = new CheckInUseCase(checkInsRepository, gymsRepository)
 
-    gymsRepository.gyms.push({
+    await gymsRepository.create({
       id: "gym-01",
       title: "NodeJs Gym",
       description: "",
-      latitude: new Decimal(22.860852),
-      longitude: new Decimal(-43.2406528),
-      phone: ""
+      phone: "",
+      latitude: 22.860852,
+      longitude: -43.2406528,
     })
 
     vi.useFakeTimers()
@@ -63,7 +67,7 @@ describe("Check In Use Case", () => {
         userLatitude: 22.860852,
         userLongitude: -43.2406528
       })
-    ).rejects.toBeInstanceOf(Error)
+    ).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
   
   it("should be able to check in twice but in different days", async () => {
@@ -104,6 +108,6 @@ describe("Check In Use Case", () => {
       gymId: "gym-02",
       userLatitude: 22.860852,
       userLongitude: -43.2406528
-    })).rejects.toBeInstanceOf(Error)
+    })).rejects.toBeInstanceOf(MaxDistanceError)
   })
 })
