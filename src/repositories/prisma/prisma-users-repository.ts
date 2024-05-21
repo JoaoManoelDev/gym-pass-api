@@ -8,7 +8,7 @@ export class PrismaUsersRepository implements UsersRepository {
     const user = await prisma.user.create({
       data
     })
-    
+
     return user
   }
 

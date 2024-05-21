@@ -1,9 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest"
 
-import {
-  InMemoryCheckInsRepository
-} from "@/repositories/in-memory/in-memory-check-ins-repository"
-import { GetUserCheckInsHistoryUseCase } from "./get-user-check-ins-history"
+import { InMemoryCheckInsRepository } from "@/repositories/in-memory/in-memory-check-ins-repository"
+import { GetUserCheckInsHistoryUseCase } from "@/use-cases/get-user-check-ins-history"
 
 let checkInsRepository: InMemoryCheckInsRepository
 let sut: GetUserCheckInsHistoryUseCase
@@ -55,5 +53,5 @@ describe("Get User Check-In History Use Case", () => {
       expect.objectContaining({ gym_id: "gym-21" }),
       expect.objectContaining({ gym_id: "gym-22" })
     ])
-  }) 
+  })
 })

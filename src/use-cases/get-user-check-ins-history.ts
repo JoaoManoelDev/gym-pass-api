@@ -8,10 +8,10 @@ interface GetUserCheckInsHistoryUseCaseRequest {
 
 interface GetUserCheckInsHistoryUseCaseResponse {
   checkIns: CheckIn[]
-} 
+}
 
 export class GetUserCheckInsHistoryUseCase {
-  constructor(private checkInsRepository: CheckInsRepository) {}
+  constructor(private checkInsRepository: CheckInsRepository) { }
 
   async execute({
     userId,

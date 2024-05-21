@@ -12,7 +12,7 @@ interface GetGymsUseCaseResponse {
 }
 
 export class GetGymsUseCase {
-  constructor(private gymsRepository: GymsRepository) {}
+  constructor(private gymsRepository: GymsRepository) { }
 
   async execute({
     query,

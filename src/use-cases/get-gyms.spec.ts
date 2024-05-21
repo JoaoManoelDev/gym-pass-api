@@ -1,9 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest"
 
-import { GetGymsUseCase } from "./get-gyms"
-import {
-  InMemoryGymsRepository
-} from "@/repositories/in-memory/in-memory-gyms-repository"
+import { GetGymsUseCase } from "@/use-cases/get-gyms"
+import { InMemoryGymsRepository } from "@/repositories/in-memory/in-memory-gyms-repository"
 
 let gymsRepository: InMemoryGymsRepository
 let sut: GetGymsUseCase

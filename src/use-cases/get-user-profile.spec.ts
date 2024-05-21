@@ -4,8 +4,8 @@ import { passwordHash } from "@/utils/hash"
 import {
   InMemoryUsersRepository
 } from "@/repositories/in-memory/in-memory-users-repository"
-import { GetUserProfileUseCase } from "./get-user-profile"
-import { ResourceNotFoundError } from "./errors/resource-not-found-error"
+import { GetUserProfileUseCase } from "@/use-cases/get-user-profile"
+import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error"
 
 let usersRepository: InMemoryUsersRepository
 let sut: GetUserProfileUseCase
@@ -15,7 +15,7 @@ describe("Get User Profile Use Case", () => {
     usersRepository = new InMemoryUsersRepository()
     sut = new GetUserProfileUseCase(usersRepository)
   })
-  
+
   it("should be able to get user profile", async () => {
     const createdUser = await usersRepository.create({
       name: "John Doe",

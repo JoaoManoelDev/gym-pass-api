@@ -3,7 +3,7 @@ import { beforeEach, describe, expect, it } from "vitest"
 import {
   InMemoryGymsRepository
 } from "@/repositories/in-memory/in-memory-gyms-repository"
-import { GetNearbyGymsUseCase } from "./get-nearby-gyms"
+import { GetNearbyGymsUseCase } from "@/use-cases/get-nearby-gyms"
 
 let gymsRepository: InMemoryGymsRepository
 let sut: GetNearbyGymsUseCase
@@ -41,5 +41,4 @@ describe("Get Nearby Gyms Use Case", () => {
       expect.objectContaining({ title: "Near Gym" }),
     ])
   })
-
 })

@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest"
 
-import { RegisterUseCase } from "./register"
-import { UserAlreadyExistsError } from "./errors/user-already-exists-error"
+import { RegisterUseCase } from "@/use-cases/register"
+import { UserAlreadyExistsError } from "@/use-cases/errors/user-already-exists-error"
 import { comparePassword } from "@/utils/hash"
 import {
   InMemoryUsersRepository
