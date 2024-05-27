@@ -21,7 +21,7 @@ describe("Create Gym (e2e)", () => {
       .post("/gyms")
       .set("Authorization", `Bearer ${token}`)
       .send({
-        title: "NodoJS Gym",
+        title: "NodeJS Gym",
         description: "Some Description",
         phone: "912345678",
         latitude: 22.860852,
