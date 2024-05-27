@@ -4,29 +4,28 @@ import request from "supertest"
 import { app } from "@/app"
 import { createAndAuthenticateUser } from "@/utils/test/create-and-authenticate-user"
 
-describe("Search Gyms (e2e)", () => {
+describe("Nearby Gyms (e2e)", () => {
   beforeAll(async () => {
     await app.ready()
   })
 
-  afterAll(async() => {
+  afterAll(async () => {
     await app.close()
   })
- 
-  it("should be able to search gyms by title", async () => {
 
+  it("should be able to list nearby gyms", async () => {
     const { token } = await createAndAuthenticateUser(app)
-    
+
     await request(app.server)
-    .post("/gyms")
-    .set("Authorization", `Bearer ${token}`)
-    .send({
-      title: "NodeJS Gym",
-      description: "Some Description",
-      phone: "912345678",
-      latitude: 22.860852,
-      longitude: -43.2406528,
-    })
+      .post("/gyms")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        title: "NodeJS Gym",
+        description: "Some Description",
+        phone: "912345678",
+        latitude: 22.860852,
+        longitude: -43.2406528,
+      })
 
     await request(app.server)
       .post("/gyms")
@@ -35,14 +34,15 @@ describe("Search Gyms (e2e)", () => {
         title: "ReactJS Gym",
         description: "Some Description",
         phone: "912345678",
-        latitude: 22.860852,
-        longitude: -43.2406528,
+        latitude: -22.3779725,
+        longitude: -43.8677777,
       })
 
     const response = await request(app.server)
-      .get("/gyms/search")
+      .get("/gyms/nearby")
       .query({
-        q: "NodeJS"
+        latitude: 22.860852,
+        longitude: -43.2406528,
       })
       .set("Authorization", `Bearer ${token}`)
       .send()
