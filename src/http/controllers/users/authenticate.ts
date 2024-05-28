@@ -26,7 +26,23 @@ export const authenticate = async (
       }
     })
 
-    return replay.status(200).send({ token })
+    const refreshToken = await replay.jwtSign({}, {
+      sign: {
+        sub: user.id,
+        expiresIn: "7d"
+      }
+    })
+
+    return replay
+      .setCookie("refreshToken", refreshToken, {
+        path: "/",
+        secure: true,
+        sameSite: true,
+        httpOnly: true
+      })
+      .status(200)
+      .send({ token })
+
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
       return replay.status(40).send({ message: error.message })
@@ -34,6 +50,4 @@ export const authenticate = async (
 
     throw error
   }
-
-
 }
