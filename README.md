@@ -1,4 +1,54 @@
-# 🏋️ Gym Pass API (SOLID) 🏋️
+# 🏋️ Gym Pass API (SOLID) 🎟️
+
+## :dart: Sobre
+
+O Gym Pass API foi construído para que eu pudesse aprofundar meus conhecimentos sobre SOLID e entender seu papel na criação de uma base de código organizada. Desenvolvi esse projeto com clareza sobre a importância desses princípios, especialmente na parte de manutenção e escalabilidade.
+
+## :rocket: Tecnologias
+
+- <a href="https://nodejs.org/en" target="_blank">Node.js</a>
+- <a href="https://fastify.dev/" target="_blank">Fastify</a>
+- <a href="https://github.com/fastify/fastify-cookie" target="_blank">Fastify Cookie</a>
+- <a href="https://github.com/fastify/fastify-jwt" target="_blank">Fastify JWT</a>
+- <a href="https://www.prisma.io/" target="_blank">Prisma ORM</a>
+- <a href="https://zod.dev/" target="_blank">Zod</a>
+- <a href="https://day.js.org/" target="_blank">Day.js</a>
+- <a href="https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html" target="_blank">SOLID</a>
+- <a href="https://docs.github.com/pt/actions" target="_blank">GitHub Actions (CI)</a>
+
+### 🎲 Rodando o app
+
+```bash
+# Clone este repositório:
+$ git clone git@github.com:JoaoManoelDev/gym-pass-api.git
+
+# Acesse a pasta do projeto no terminal/cmd.
+$ cd gym-pass-api
+
+# Instale as dependências
+$ npm install
+
+# Crie uma arquivo .env e copie o arquivo .env.example dentro dele.
+# Para facilitar, o arquivo já contém o DATABASE_URL padrão do Docker e JWT_SECRET configurado.
+
+# Para rodar as migrations do prisma digite o comando:
+$ npx prisma migrate dev
+
+# Para configurar o prisma client e suas tipagens digite o comando:
+$ npx prisma generate
+
+# Para rodar os testes unitários digite o comando:
+$ npm run test
+
+# Para rodar os testes e2e digite o comando:
+$ npm run test:e2e
+
+# Para subir o servidor digite o comando:
+$ npm run dev
+
+# Deve aparecer a seguinte mensagem -> HTTP Server Running!
+
+```
 
 ## RFs (Requisitos funcionais)
 
