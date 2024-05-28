@@ -1,14 +1,21 @@
 import { FastifyInstance } from "fastify"
 import request from "supertest"
 
-export const createAndAuthenticateUser = async (app: FastifyInstance) => {
-  await request(app.server)
-    .post("/users")
-    .send({
+import { prisma } from "@/lib/prisma"
+import { passwordHash } from "@/utils/hash"
+
+export const createAndAuthenticateUser = async (
+  app: FastifyInstance,
+  {isAdmin = false} = {}
+) => {
+  await prisma.user.create({
+    data: {
       name: "John Doe",
       email: "johndoe@email.com",
-      password: "123456"
-    })
+      password_hash: await passwordHash({ password: "123456" }),
+      role: isAdmin ? "ADMIN" : "MEMBER"
+    }
+  })
 
   const authResponse = await request(app.server)
     .post("/sessions")
