@@ -1,6 +1,4 @@
-# APP
-
-GymPass style app.
+# 🏋️ Gym Pass API (SOLID) 🏋️
 
 ## RFs (Requisitos funcionais)
 
