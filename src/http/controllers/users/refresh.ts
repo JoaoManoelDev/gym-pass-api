@@ -6,13 +6,15 @@ export const refresh = async (
 ) => {
   await request.jwtVerify({ onlyCookie: true })
 
-  const token = await replay.jwtSign({}, {
+  const { role } = request.user
+
+  const token = await replay.jwtSign({ role }, {
     sign: {
       sub: request.user.sub
     }
   })
 
-  const refreshToken = await replay.jwtSign({}, {
+  const refreshToken = await replay.jwtSign({ role }, {
     sign: {
       sub: request.user.sub,
       expiresIn: "7d"

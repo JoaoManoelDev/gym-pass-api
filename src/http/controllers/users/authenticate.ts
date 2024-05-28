@@ -20,13 +20,17 @@ export const authenticate = async (
     
     const { user } = await authenticateUseCase.execute({ email, password })
 
-    const token = await replay.jwtSign({}, {
+    const token = await replay.jwtSign({
+      role: user.role
+    }, {
       sign: {
         sub: user.id
       }
     })
 
-    const refreshToken = await replay.jwtSign({}, {
+    const refreshToken = await replay.jwtSign({
+      role: user.role
+    }, {
       sign: {
         sub: user.id,
         expiresIn: "7d"
