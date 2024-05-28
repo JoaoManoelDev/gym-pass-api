@@ -49,7 +49,7 @@ export const authenticate = async (
 
   } catch (error) {
     if (error instanceof InvalidCredentialsError) {
-      return replay.status(40).send({ message: error.message })
+      return replay.status(400).send({ message: error.message })
     }
 
     throw error
