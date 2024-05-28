@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify"
 
-export const verifyUserRole = async (roleToVerify: "ADMIN" | "MEMBER") => {
-  return (
+export const verifyUserRole = (roleToVerify: "ADMIN" | "MEMBER") => {
+  return async (
     request: FastifyRequest,
     replay: FastifyReply
   ) => {
